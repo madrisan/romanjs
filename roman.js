@@ -65,7 +65,7 @@ RomanNumber.prototype = {
      *  'this.value' starting at position 'pos' and with length
      *  'delta' can be found in the table 'this.symtable'
      */
-    symtableLookup = function(pos, delta) {
+    symtableLookup: function(pos, delta) {
         if (pos + delta > this.value.length) {
             return false;
         };
@@ -93,7 +93,7 @@ RomanNumber.prototype = {
         while (i < this.value.length) {
             if (this.symtableLookup(i, 2)) {
                 i += 2;
-            } else if (this.symtableLookup(i, 1)i) {
+            } else if (this.symtableLookup(i, 1)) {
                 i += 1;
             } else {
                 return false;
