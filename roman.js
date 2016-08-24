@@ -77,7 +77,24 @@ RomanNumber.prototype = {
         if (this.decimal) {
             return this.decimal;
         };
-        return 'not-implemented';
+
+        var i = 0,
+            result;
+
+        while (i < this.value.length) {
+            if (i+2 <= this.value.length &&
+                this.value.substring(i, i+2) in this.symtable) {
+                result += this.symtable[this.value.substring(i, i+2)];
+                i += 2;
+            } else if (this.value.substring(i, i+1) in this.symtable) {
+                result += this.symtable[this.value.substring(i, i+1)];
+                i += 1;
+            } else {
+                throw new Error("invalid value");
+            }
+        }
+
+        return result;
     },
 
     toString: function() {
@@ -121,23 +138,22 @@ var testObjs = [
         var romanNumber2 = new RomanNumber(40);
         var romanNumber3 = new RomanNumber(1995);
 
-        console.log(romanNumber1.isRoman());  // => true
-        console.log(romanNumber1.toInt());  // => 20
-        console.log(romanNumber1.toString());  // => 'XX'
-        console.log(romanNumber2.isRoman());  // => false
-        console.log(romanNumber2.toInt());  // => 40
-        console.log(romanNumber2.toString());  // => 'XL'
-        console.log(romanNumber3.toString());  // => 'MCMXCV'
+        console.log("XX is roman: " + romanNumber1.isRoman());  // => true
+        console.log("XX --(arabic)--> " + romanNumber1.toInt());  // => 20
+        console.log("XX --(roman)--> " + romanNumber1.toString());  // => 'XX'
+        console.log("40 is roman: " + romanNumber2.isRoman());  // => false
+        console.log("40 --(arabic)--> " + romanNumber2.toInt());  // => 40
+        console.log("40 --(roman)--> " + romanNumber2.toString());  // => 'XL'
+        console.log("1995 --(roman)--> " + romanNumber3.toString());  // => 'MCMXCV'
 
         testObjs.forEach(function(str) {
             try {
-                num = new RomanNumber(str);
+                var num = new RomanNumber(str);
                 if (num.isDecimal()) {
-                    var d = num.toInt();
-                    console.log('Is "%s" equal to "%s"?', str, d, isEqual(str, d));
+                    console.log('%s is an arabic number, in roman notation: %s', str, num.toString());
                 }
-                else {
-                    console.log('%s is not an arabic number, not yet implemented', str);
+                else if (num.isRoman()) {
+                    console.log('%s is a roman number, in arabic notation: %s', str, num.toInt());
                 }
             }
             catch(e) {
