@@ -74,7 +74,7 @@ RomanNumber.prototype = {
         ];
         for (var i in wrongPatterns) {
             if (this.value.indexOf(wrongPatterns[i]) !== -1) {
-                 throw new Error("invalid value");
+                 return false;
             };
         }
 
