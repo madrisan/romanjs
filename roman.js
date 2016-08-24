@@ -113,7 +113,7 @@ RomanNumber.prototype = {
             }
         }
 
-        return result;
+        return this.decimal = result;
     },
 
     toString: function() {
@@ -134,7 +134,7 @@ RomanNumber.prototype = {
             }
         }
 
-        return result;
+        return this.roman = result;
     }
 };
 
