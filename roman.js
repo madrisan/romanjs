@@ -47,6 +47,18 @@ RomanNumber.prototype = {
         }
     },
 
+    symbableLookup = function(pos, delta) {
+        if (pos + delta > this.value.length) {
+            return false;
+        };
+
+        if (this.value.substring(pos, pos + delta) in this.symtable) {
+            return true;
+        };
+
+        return false;
+    },
+
     isDecimal: function() {
         return +this.value === +this.value
             && typeof this.value !== 'string';
@@ -59,10 +71,9 @@ RomanNumber.prototype = {
 
         var i = 0;
         while (i < this.value.length) {
-            if (i+2 <= this.value.length &&
-                this.value.substring(i, i+2) in this.symtable) {
+            if (this.symbableLookup(i, 2)) {
                 i += 2;
-            } else if (this.value.substring(i, i+1) in this.symtable) {
+            } else if (this.symbableLookup(i, 1)i) {
                 i += 1;
             } else {
                 return false;
@@ -91,11 +102,10 @@ RomanNumber.prototype = {
             result = 0;
 
         while (i < this.value.length) {
-            if (i+2 <= this.value.length &&
-                this.value.substring(i, i+2) in this.symtable) {
+            if (this.symbableLookup(i, 2)) {
                 result += this.symtable[this.value.substring(i, i+2)];
                 i += 2;
-            } else if (this.value.substring(i, i+1) in this.symtable) {
+            } else if (this.symbableLookup(i, 1)) {
                 result += this.symtable[this.value.substring(i, i+1)];
                 i += 1;
             } else {
