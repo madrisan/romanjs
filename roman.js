@@ -57,18 +57,14 @@ RomanNumber.prototype = {
         while (i < this.value.length) {
             if (i+2 <= this.value.length &&
                 this.value.substring(i, i+2) in this.symtable) {
-                //console.log("2 ch " + this.value.substring(i, i+2));
                 i += 2;
             } else if (this.value.substring(i, i+1) in this.symtable) {
-                //console.log("1 ch " + this.value.substring(i, i+1));
                 i += 1;
             } else {
-                //console.log("isRoman() " + this.value + " false");
                 return false;
             }
         }
 
-        //console.log("isRoman() " + this.value + " true");
         return true;
     },
 
