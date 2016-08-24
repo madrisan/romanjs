@@ -84,7 +84,21 @@ RomanNumber.prototype = {
         if (this.roman) {
             return this.roman;
         };
-        return 'not-implemented';
+
+        var residous = this.value,
+            result = '';
+
+        while (residous > 0) {
+            for (var s in this.symtable) {
+                if (residous >= this.symtable[s]) {
+                    residous %= this.symtable[s];
+                    result += s;
+                    break; 
+                } 
+            }
+        }
+
+        return result;
     }
 };
 
@@ -105,6 +119,7 @@ var testObjs = [
     testRoman = function() {
         var romanNumber1 = new RomanNumber('XX');
         var romanNumber2 = new RomanNumber(40);
+        var romanNumber3 = new RomanNumber(1995);
 
         console.log(romanNumber1.isRoman());  // => true
         console.log(romanNumber1.toInt());  // => 20
@@ -112,6 +127,7 @@ var testObjs = [
         console.log(romanNumber2.isRoman());  // => false
         console.log(romanNumber2.toInt());  // => 40
         console.log(romanNumber2.toString());  // => 'XL'
+        console.log(romanNumber3.toString());  // => 'MCMXCV'
 
         testObjs.forEach(function(str) {
             try {
