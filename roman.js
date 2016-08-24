@@ -146,13 +146,10 @@ var testObjs = [
         var romanNumber2 = new RomanNumber(40);
         var romanNumber3 = new RomanNumber(1995);
 
-        console.log("XX is roman: " + romanNumber1.isRoman());  // => true
-        console.log("XX --(arabic)--> " + romanNumber1.toInt());  // => 20
-        console.log("XX --(roman)--> " + romanNumber1.toString());  // => 'XX'
-        console.log("40 is roman: " + romanNumber2.isRoman());  // => false
-        console.log("40 --(arabic)--> " + romanNumber2.toInt());  // => 40
-        console.log("40 --(roman)--> " + romanNumber2.toString());  // => 'XL'
-        console.log("1995 --(roman)--> " + romanNumber3.toString());  // => 'MCMXCV'
+        console.log("XX is equal to 20: " + isEqual(20, romanNumber1.toInt()));
+        console.log("XX is equal to XX: " + isEqual('XX', romanNumber1.toString()));
+        console.log("40 is equal to XL: " + isEqual('XL', romanNumber2.toString()));
+        console.log("1995 is equal to MCMXCV: " + isEqual('MCMXCV', romanNumber3.toString()));
 
         testObjs.forEach(function(str) {
             try {
