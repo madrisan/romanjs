@@ -1,3 +1,14 @@
+/** Class RomanNumber that takes a value and returns
+ *  a new object that can be used in the following way:
+ *
+ *     var romanNumber1 = new RomanNumber('XX');
+ *     var romanNumber2 = new RomanNumber(40);
+ *
+ *     console.log(romanNumber1.toInt());  // => 20
+ *     console.log(romanNumber1.toString());  // => 'XX'
+ *     console.log(romanNumber2.toInt());  // => 40
+ *     console.log(romanNumber2.toString());  // => 'XL'
+ */
 var RomanNumber = function(value) {
     obj = Object.create(RomanNumber.prototype);
     obj.value = value;
@@ -28,6 +39,9 @@ var RomanNumber = function(value) {
 };
 
 RomanNumber.prototype = {
+    /** this function validates the input number;
+     *  an exception is raised when the input is not valid
+     */
     validateInput: function() {
         if (this.value == null || this.value.length === 0) {
             throw new Error("value required");
@@ -47,6 +61,10 @@ RomanNumber.prototype = {
         }
     },
 
+    /** helper function that returns true if the substring
+     *  'this.value' starting at position 'pos' and with length
+     *  'delta' can be found in the table 'this.symtable'
+     */
     symtableLookup = function(pos, delta) {
         if (pos + delta > this.value.length) {
             return false;
@@ -59,11 +77,13 @@ RomanNumber.prototype = {
         return false;
     },
 
+    /** returns true if the number is in Arabic format */
     isDecimal: function() {
         return +this.value === +this.value
             && typeof this.value !== 'string';
     },
 
+    /** returns true if the number is a standard Roman number */
     isRoman: function() {
         if (this.isDecimal()) {
             return false;
@@ -93,6 +113,7 @@ RomanNumber.prototype = {
         return true;
     },
 
+    /** translates the imput number into the Arabic format */
     toInt: function() {
         if (this.decimal) {
             return this.decimal;
@@ -116,6 +137,7 @@ RomanNumber.prototype = {
         return this.decimal = result;
     },
 
+    /** translates the imput number into the Roman format */
     toString: function() {
         if (this.roman) {
             return this.roman;
