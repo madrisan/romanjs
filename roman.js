@@ -48,7 +48,8 @@ RomanNumber.prototype = {
     },
 
     isDecimal: function() {
-        return +this.value === +this.value;
+        return +this.value === +this.value
+            && typeof this.value !== 'string';
     },
 
     isRoman: function() {
