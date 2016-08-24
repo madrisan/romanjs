@@ -2,12 +2,51 @@ var RomanNumber = function(value) {
     obj = Object.create(RomanNumber.prototype);
     obj.value = value;
 
+    obj.symtable = {
+        'M'  : 1000,
+        'CM' :  900,
+        'D'  :  500,
+        'CD' :  400,
+        'C'  :  100,
+        'XC' :   90,
+        'L'  :   50,
+        'XL' :   40,
+        'X'  :   10,
+        'IX' :    9,
+        'V'  :    5,
+        'IV' :    4,
+        'I'  :    1
+    };
+
+    // validate the input
+    obj.validateInput(value);
+
     return obj;
 };
 
 RomanNumber.prototype = {
+    validateInput: function() {
+        if (this.value == null || this.value.length === 0) {
+            throw new Error("value required");
+        };
+        if (this.isDecimal()) {
+            if (this.value < 1 || this.value > 3999) {
+                throw new Error("invalid range");
+            }
+        } else if (this.isRoman()) {
+            // ADD-ME
+        } 
+        else {
+            throw new Error("invalid value");
+        }
+    },
+
     isDecimal: function() {
         return +this.value === +this.value;
+    },
+
+    isRoman: function() {
+        return true;  // FIXME
     },
 
     toInt: function() {
