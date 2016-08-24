@@ -52,8 +52,11 @@ RomanNumber.prototype = {
     },
 
     isRoman: function() {
-        var i = 0;
+        if (this.isDecimal()) {
+            return false;
+        }
 
+        var i = 0;
         while (i < this.value.length) {
             if (i+2 <= this.value.length &&
                 this.value.substring(i, i+2) in this.symtable) {
@@ -64,6 +67,8 @@ RomanNumber.prototype = {
                 return false;
             }
         }
+
+        // FIXME: more than three consecutive copies of the same letter are not allowed
 
         return true;
     },
