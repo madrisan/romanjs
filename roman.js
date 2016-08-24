@@ -79,8 +79,7 @@ RomanNumber.prototype = {
 
     /** returns true if the number is in Arabic format */
     isDecimal: function() {
-        return +this.value === +this.value
-            && typeof this.value !== 'string';
+        return Number.isInteger(this.value);
     },
 
     /** returns true if the number is a standard Roman number */
