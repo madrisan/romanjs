@@ -2,6 +2,9 @@ var RomanNumber = function(value) {
     obj = Object.create(RomanNumber.prototype);
     obj.value = value;
 
+    obj.decimal = null;
+    obj.roman = null;
+
     obj.symtable = {
         'M'  : 1000,
         'CM' :  900,
@@ -32,9 +35,12 @@ RomanNumber.prototype = {
         if (this.isDecimal()) {
             if (this.value < 1 || this.value > 3999) {
                 throw new Error("invalid range");
-            }
+            };
+            // this.value is a valid decimal number
+            this.decimal = this.value;
         } else if (this.isRoman()) {
-            // ADD-ME
+            // this.value is a valid roman number
+            this.roman = this.value;
         } 
         else {
             throw new Error("invalid value");
@@ -50,11 +56,17 @@ RomanNumber.prototype = {
     },
 
     toInt: function() {
-        return this.isDecimal() ? this.value : 'not-implemented';
+        if (this.decimal) {
+            return this.decimal;
+        };
+        return 'not-implemented';
     },
 
     toString: function() {
-        return this.isDecimal() ? 'not-implemented' : this.value;
+        if (this.roman) {
+            return this.roman;
+        };
+        return 'not-implemented';
     }
 };
 
