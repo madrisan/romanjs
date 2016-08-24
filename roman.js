@@ -108,7 +108,7 @@ RomanNumber.prototype = {
         while (residous > 0) {
             for (var s in this.symtable) {
                 if (residous >= this.symtable[s]) {
-                    residous %= this.symtable[s];
+                    residous -= this.symtable[s];
                     result += s;
                     break; 
                 } 
