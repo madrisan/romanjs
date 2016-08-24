@@ -79,7 +79,7 @@ RomanNumber.prototype = {
         };
 
         var i = 0,
-            result;
+            result = 0;
 
         while (i < this.value.length) {
             if (i+2 <= this.value.length &&
