@@ -52,7 +52,24 @@ RomanNumber.prototype = {
     },
 
     isRoman: function() {
-        return true;  // FIXME
+        var i = 0;
+
+        while (i < this.value.length) {
+            if (i+2 <= this.value.length &&
+                this.value.substring(i, i+2) in this.symtable) {
+                //console.log("2 ch " + this.value.substring(i, i+2));
+                i += 2;
+            } else if (this.value.substring(i, i+1) in this.symtable) {
+                //console.log("1 ch " + this.value.substring(i, i+1));
+                i += 1;
+            } else {
+                //console.log("isRoman() " + this.value + " false");
+                return false;
+            }
+        }
+
+        //console.log("isRoman() " + this.value + " true");
+        return true;
     },
 
     toInt: function() {
@@ -88,8 +105,10 @@ var testObjs = [
         var romanNumber1 = new RomanNumber('XX');
         var romanNumber2 = new RomanNumber(40);
 
+        console.log(romanNumber1.isRoman());  // => true
         console.log(romanNumber1.toInt());  // => 20
         console.log(romanNumber1.toString());  // => 'XX'
+        console.log(romanNumber2.isRoman());  // => false
         console.log(romanNumber2.toInt());  // => 40
         console.log(romanNumber2.toString());  // => 'XL'
 
