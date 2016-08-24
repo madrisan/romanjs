@@ -142,13 +142,13 @@ RomanNumber.prototype = {
             return this.roman;
         };
 
-        var residous = this.value,
+        var residuos = this.value,
             result = '';
 
-        while (residous > 0) {
+        while (residuos > 0) {
             for (var s in this.symtable) {
-                if (residous >= this.symtable[s]) {
-                    residous -= this.symtable[s];
+                if (residuos >= this.symtable[s]) {
+                    residuos -= this.symtable[s];
                     result += s;
                     break; 
                 } 
