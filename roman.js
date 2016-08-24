@@ -68,7 +68,15 @@ RomanNumber.prototype = {
             }
         }
 
-        // FIXME: more than three consecutive copies of the same letter are not allowed
+        // more than three consecutive copies of the same letter are not allowed
+        var wrongPatterns = [
+            'MMMM', 'CCCC', 'DDDD', 'LLLL', 'XXXX', 'VVVV', 'IIII'
+        ];
+        for (var i in wrongPatterns) {
+            if (this.value.indexOf(wrongPatterns[i]) !== -1) {
+                 throw new Error("invalid value");
+            };
+        }
 
         return true;
     },
