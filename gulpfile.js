@@ -12,7 +12,7 @@ gulp.task('test', function() {
         }).
         on('end', function() {
             if (!error) {
-                console.log('Tests successeded!');
+                console.log('Tests succedeed!');
                 process.exit(0);
             }
         });

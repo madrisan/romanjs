@@ -28,4 +28,4 @@ console.log('XL <--> %s', arabic);
 ```
 
 _Note:_
-The tests can be executed by running the command `npm run test`.
+The tests can be executed by running the command `npm run test` or `npm run watch`.
