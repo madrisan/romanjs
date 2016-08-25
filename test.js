@@ -2,17 +2,6 @@ var assert = require('assert')
   , RomanNumber;
 
 describe('Tests for the class RomanNumber()', function() {
-    //var testObjs = [
-    //    1, 3, 4, 5,
-    //    'I', 'III', 'IIII', 'IV', 'V',
-    //    1968, 2999, 3000,
-    //    'CDXXIX', 'MCDLXXXII', 'MCMLXXX',
-    //],
-
-    //isEqual = function(str1, str2) {
-    //    return str1 === str2 ? 'Yes' : 'False';
-    //},
-
     before(function() {
         RomanNumber = require('./roman');
     });
