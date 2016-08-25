@@ -13,3 +13,19 @@ This is a just a test.
     <dt><em>With the tests moved to the (gulp-)mocha framework:</em></dt>
     <dd>Thu Aug 25 23:40:11 CEST 2016</dd>
 </dl>
+
+_Usage:_
+
+```javascript
+var RomanNumber = require('./roman');
+
+var roman = RomanNumber(1995).toString();
+console.log('1995 <--> %s', roman);
+
+var arabic = RomanNumber('XL').toInt();
+console.log('XL <--> %s', arabic);
+
+```
+
+_Note:_
+The tests can be executed by running the command `npm run test`.
