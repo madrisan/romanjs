@@ -159,6 +159,8 @@ RomanNumber.prototype = {
     }
 };
 
+module.exports = RomanNumber;
+
 
 // tests
 var testObjs = [
