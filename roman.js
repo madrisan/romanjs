@@ -9,8 +9,11 @@
  *     console.log(romanNumber2.toInt());  // => 40
  *     console.log(romanNumber2.toString());  // => 'XL'
  */
+
+"use strict";
+
 var RomanNumber = function(value) {
-    obj = Object.create(RomanNumber.prototype);
+    var obj = Object.create(RomanNumber.prototype);
     obj.value = value;
 
     obj.decimal = null;
