@@ -1,5 +1,5 @@
 # romanjs
-### Roman to Arabic JavaScript library
+### Roman to Arabic / Arabic to Roman Number Conversion JavaScript Library
 
 This is a just a test.
 
