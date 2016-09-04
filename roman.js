@@ -15,19 +15,19 @@
 (function() {
 
     var symtable = [
-        { s: 'M',  v: 1000 },
-        { s: 'CM', v:  900 },
-        { s: 'D',  v:  500 },
-        { s: 'CD', v:  400 },
-        { s: 'C',  v:  100 },
-        { s: 'XC', v:   90 },
-        { s: 'L',  v:   50 },
-        { s: 'XL', v:   40 },
-        { s: 'X',  v:   10 },
-        { s: 'IX', v:    9 },
-        { s: 'V',  v:    5 },
-        { s: 'IV', v:    4 },
-        { s: 'I',  v:    1 }
+        { roman: 'M',  arabic: 1000 },
+        { roman: 'CM', arabic:  900 },
+        { roman: 'D',  arabic:  500 },
+        { roman: 'CD', arabic:  400 },
+        { roman: 'C',  arabic:  100 },
+        { roman: 'XC', arabic:   90 },
+        { roman: 'L',  arabic:   50 },
+        { roman: 'XL', arabic:   40 },
+        { roman: 'X',  arabic:   10 },
+        { roman: 'IX', arabic:    9 },
+        { roman: 'V',  arabic:    5 },
+        { roman: 'IV', arabic:    4 },
+        { roman: 'I',  arabic:    1 }
     ];
 
     var RomanNumber = function(value) {
@@ -76,11 +76,10 @@
 
             var sstr = this.value.substring(pos, pos + delta);
             for (var i in symtable) {
-                if (symtable[i].s === sstr) {
-                    //console.log(sstr + ' --> ' + symtable[i].v);
+                if (symtable[i].roman === sstr) {
                     return {
                         pos: i,
-                        value: symtable[i].v
+                        value: symtable[i].arabic
                     };
                 }
             };
@@ -162,9 +161,9 @@
 
             while (residuos > 0) {
                 for (var i in symtable) {
-                    if (residuos >= symtable[i].v) {
-                        residuos -= symtable[i].v;
-                        result += symtable[i].s;
+                    if (residuos >= symtable[i].arabic) {
+                        residuos -= symtable[i].arabic;
+                        result += symtable[i].roman;
                         break;
                     }
                 }

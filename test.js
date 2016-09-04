@@ -67,9 +67,9 @@ describe('Tests for the class RomanNumber()', function() {
 
     (function() {
         var testObjs = [
-            { 'roman': 'XX', 'arabic': 20 },
-            { 'roman': 'XL', 'arabic': 40 },
-            { 'roman': 'MCMXCV', 'arabic': 1995 }
+            { roman: 'XX', arabic: 20 },
+            { roman: 'XL', arabic: 40 },
+            { roman: 'MCMXCV', arabic: 1995 }
         ];
 
         testObjs.forEach(function(test) {
