@@ -31,16 +31,16 @@
     };
 
     var RomanNumber = function(value) {
-        var obj = Object.create(RomanNumber.prototype);
-        obj.value = value;
+        if (!(this instanceof RomanNumber)) {
+            return new RomanNumber();
+        };
 
-        obj.decimal = null;
-        obj.roman = null;
+        this.value = value;
+        this.decimal = null;
+        this.roman = null;
 
         // validate the input
-        obj.validateInput(value);
-
-        return obj;
+        this.validateInput(value);
     };
 
     RomanNumber.prototype = {
