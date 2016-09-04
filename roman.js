@@ -134,7 +134,6 @@
                 sym = this.symtableLookup(i, 2);
                 if (sym.value) {
                     result += sym.value;
-                    console.log('result: ' + result);
                     i += 2;
                     continue;
                 };
@@ -142,7 +141,6 @@
                 sym = this.symtableLookup(i, 1);
                 if (sym.value) {
                     result += sym.value;
-                    console.log('result: ' + result);
                     i += 1;
                     continue;
                 };

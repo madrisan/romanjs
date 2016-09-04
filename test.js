@@ -57,27 +57,35 @@ describe('Tests for the class RomanNumber()', function() {
             'CDXXIX', 'MCDLXXXII', 'MCMLXXX'
         ];
         testObjs.forEach(function(number) {
-            assert.doesNotThrow(() => { new RomanNumber(number); }, 'got unwanted exception for ' + number);
+            assert.doesNotThrow(
+                () => { new RomanNumber(number); },
+                'got unwanted exception for ' + number
+            );
         });
         done();
     });
 
-    it('roman to arabic conversion (XX)', function(done) {
-        var romanNumber = new RomanNumber('XX');
-        assert.equal(romanNumber.toInt(), '20');
-        done();
-    });
+    (function() {
+        var testObjs = [
+            { 'roman': 'XX', 'arabic': 20 },
+            { 'roman': 'XL', 'arabic': 40 },
+            { 'roman': 'MCMXCV', 'arabic': 1995 }
+        ];
 
-    it('arabic to roman conversion (40)', function(done) {
-        var romanNumber = new RomanNumber(40);
-        assert.equal(romanNumber.toString(), 'XL');
-        done();
-    });
+        testObjs.forEach(function(test) {
+            it('roman to arabic conversion: ' + test.roman, function(done) {
+                var romanNumber = new RomanNumber(test.roman);
+                assert.equal(romanNumber.toInt(), test.arabic);
+                done();
+            });
 
-    it('arabic to roman conversion (1995)', function(done) {
-        var romanNumber = new RomanNumber(1995);
-        assert.equal(romanNumber.toString(), 'MCMXCV');
-        done();
-    });
+            it('arabic to roman conversion: ' + test.arabic, function(done) {
+                var romanNumber = new RomanNumber(test.arabic);
+                assert.equal(romanNumber.toString(), test.roman);
+                done();
+            });
+        });
+
+    })();
 
 });
