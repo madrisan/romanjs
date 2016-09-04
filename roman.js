@@ -32,7 +32,7 @@
 
     var RomanNumber = function(value) {
         if (!(this instanceof RomanNumber)) {
-            return new RomanNumber();
+            return new RomanNumber(value);
         };
 
         this.value = value;
