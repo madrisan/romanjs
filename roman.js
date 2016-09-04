@@ -14,21 +14,21 @@
 
 (function() {
 
-    var symtable = {
-        'M'  : 1000,
-        'CM' :  900,
-        'D'  :  500,
-        'CD' :  400,
-        'C'  :  100,
-        'XC' :   90,
-        'L'  :   50,
-        'XL' :   40,
-        'X'  :   10,
-        'IX' :    9,
-        'V'  :    5,
-        'IV' :    4,
-        'I'  :    1
-    };
+    var symtable = [
+        { s: 'M',  v: 1000 },
+        { s: 'CM', v:  900 },
+        { s: 'D',  v:  500 },
+        { s: 'CD', v:  400 },
+        { s: 'C',  v:  100 },
+        { s: 'XC', v:   90 },
+        { s: 'L',  v:   50 },
+        { s: 'XL', v:   40 },
+        { s: 'X',  v:   10 },
+        { s: 'IX', v:    9 },
+        { s: 'V',  v:    5 },
+        { s: 'IV', v:    4 },
+        { s: 'I',  v:    1 }
+    ];
 
     var RomanNumber = function(value) {
         if (!(this instanceof RomanNumber)) {
@@ -66,20 +66,25 @@
             }
         },
 
-        /** helper function that returns true if the substring
-         *  'this.value' starting at position 'pos' and with length
-         *  'delta' can be found in the table 'symtable'
+        /** helper function that looks in 'symtable' for the substring
+         *  of 'this.value' with length 'delta' and starting at position 'pos'
          */
         symtableLookup: function(pos, delta) {
             if (pos + delta > this.value.length) {
                 return false;
             };
 
-            if (this.value.substring(pos, pos + delta) in symtable) {
-                return true;
+            var sstr = this.value.substring(pos, pos + delta);
+            for (var i in symtable) {
+                if (symtable[i].s === sstr) {
+                    //console.log(sstr + ' --> ' + symtable[i].v);
+                    return {
+                        pos: i,
+                        value: symtable[i].v
+                    };
+                }
             };
-
-            return false;
+            return { pos: null, value: null };
         },
 
         /** returns true if the number is in Arabic format */
@@ -95,9 +100,9 @@
 
             var i = 0;
             while (i < this.value.length) {
-                if (this.symtableLookup(i, 2)) {
+                if (this.symtableLookup(i, 2).pos) {
                     i += 2;
-                } else if (this.symtableLookup(i, 1)) {
+                } else if (this.symtableLookup(i, 1).pos) {
                     i += 1;
                 } else {
                     return false;
@@ -123,18 +128,26 @@
             };
 
             var i = 0,
-                result = 0;
+                result = 0, sym;
 
             while (i < this.value.length) {
-                if (this.symtableLookup(i, 2)) {
-                    result += this.symtable[this.value.substring(i, i+2)];
+                sym = this.symtableLookup(i, 2);
+                if (sym.value) {
+                    result += sym.value;
+                    console.log('result: ' + result);
                     i += 2;
-                } else if (this.symtableLookup(i, 1)) {
-                    result += symtable[this.value.substring(i, i+1)];
+                    continue;
+                };
+
+                sym = this.symtableLookup(i, 1);
+                if (sym.value) {
+                    result += sym.value;
+                    console.log('result: ' + result);
                     i += 1;
-                } else {
-                    throw new Error("invalid value");
-                }
+                    continue;
+                };
+
+                throw new Error("invalid value");
             }
 
             return this.decimal = result;
@@ -150,10 +163,10 @@
                 result = '';
 
             while (residuos > 0) {
-                for (var s in symtable) {
-                    if (residuos >= symtable[s]) {
-                        residuos -= symtable[s];
-                        result += s;
+                for (var i in symtable) {
+                    if (residuos >= symtable[i].v) {
+                        residuos -= symtable[i].v;
+                        result += symtable[i].s;
                         break;
                     }
                 }
