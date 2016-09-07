@@ -20,10 +20,10 @@ _Usage:_
 var RomanNumber = require('./roman');
 
 var roman = RomanNumber(1995).toString();
-console.log('1995 <--> %s', roman);
+console.log('1995 <--> %s', roman);    // 1995 <--> MCMXCV
 
 var arabic = RomanNumber('XL').toInt();
-console.log('XL <--> %s', arabic);
+console.log('XL <--> %s', arabic);     // XL <--> 40
 
 ```
 
